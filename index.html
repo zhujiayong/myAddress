@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Letter - Simple Sign Up Form</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+	<!-- Google web font "Open Sans" -->
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/demo.css" />
+	<link rel="stylesheet" href="css/templatemo-style.css">
+	<script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
+
+</head>
+
+<body>
+	<div class="noExtension hide" id="noExtension">
+		NOTE: Please install
+		<a target="_blank" href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a> to use SUPER DICTIONARY
+	</div>
+	<div id="particles-js"></div>
+
+	<ul class="cb-slideshow">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<div class="container-fluid">
+		<div class="row cb-slideshow-text-container ">
+			<div class="tm-content col-xl-10 col-sm-4 col-xs-4 ml-auto section">
+				<header class="mb-5">
+					<h1>Letter</h1>
+				</header>
+				<P class="mb-5">A sign-up letter template with three background images shuffling by fade in out movements. Thank you for visiting our
+					site!
+				</P>
+
+				<form action="#" method="get" class="subscribe-form">
+					<div class="row form-section">
+						<div class="col-md-5 col-sm-5 col-xs-5">
+							<input name="nickname" type="text" class="form-control" id="nickname" placeholder="Your nick_name..." required/>
+						</div>
+						<div class="col-md-1 col-sm-1 col-xs-1">
+							<select class="form-section" id="platform_serach" style="height: 60px;">
+								<option value="">ALL</option>
+								<option value="币安">币安</option>
+								<option value="火币">火币</option>
+							</select>
+						</div>
+						<div class="col-md-2 col-sm-2 col-xs-2">
+							<input name="coinname" type="text" class="form-control" id="coinname_search" placeholder="CoinName" required/>
+						</div>
+						<div class="col-md-4 col-sm-4 col-xs-4">
+							<button type="button" class="tm-btn-subscribe" onclick="search()">Search</button>
+						</div>
+					</div>
+					<div class="row form-section">
+						<div class="col-md-1 col-sm-1 col-xs-1">
+							Result:
+						</div>
+						<div class="col-md-11 col-sm-11 col-xs-11">
+							<ul>
+								<li>火币:BTC:xxxxxxxxxxxxxxxxxxxxxxxxxx</li>
+								<li>火币:ETH:xxxxxxxxxxxxxxxxxxxxxxxxxx</li>
+							</ul>
+						</div>
+					</div>
+					<div class="row form-section">
+						<div class="col-md-1 col-sm-1 col-xs-1">
+							<select class="form-section" style="height: 60px;">
+								<option value="币安">币安</option>
+								<option value="火币">火币</option>
+							</select>
+						</div>
+						<div class="col-md-3 col-sm-3 col-xs-3">
+							<input name="coinname" type="text" class="form-control" id="coinname" placeholder="CoinName" required/>
+						</div>
+						<div class="col-md-4 col-sm-4 col-xs-4">
+							<input name="address" type="text" class="form-control" id="address" placeholder="Address" required/>
+						</div>
+						<div class="col-md-2 col-sm-2 col-xs-2">
+							<button type="button" onclick="add()" class="tm-btn-subscribe">Add</button>
+						</div>
+					</div>
+				</form>
+
+				<div class="tm-social-icons-container text-xs-center">
+					<a href="#" class="tm-social-link">
+						<i class="fa fa-facebook"></i>
+					</a>
+					<a href="#" class="tm-social-link">
+						<i class="fa fa-google-plus"></i>
+					</a>
+					<a href="#" class="tm-social-link">
+						<i class="fa fa-twitter"></i>
+					</a>
+					<a href="#" class="tm-social-link">
+						<i class="fa fa-linkedin"></i>
+					</a>
+				</div>
+
+			</div>
+		</div>
+		<div class="footer-link">
+			<p>Copyright © 2018 auto technology - Design:
+				<a rel="nofollow" href="#" target="_parent">outman</a>
+			</p>
+		</div>
+	</div>
+</body>
+
+<script type="text/javascript" src="js/particles.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script src=lib/jquery-3.3.1.min.js></script>
+<script src=lib/nebPay.js></script>
+<script src=lib/bootstrap-4.0.0-dist/js/bootstrap.min.js></script>
+<script src=lib/nebulas.js></script>
+<script type="text/javascript">
+	function search() {
+		alert("search....");
+	}
+
+	function add() {
+		alert("add....");
+	}
+	var dappAddress = "n1navj1HRCNjgfWAvT4uKeTwzPaqNfYc53D";
+	var nebulas = require("nebulas"),
+		Account = nebulas.Account,
+		neb = new nebulas.Neb();
+	neb.setRequest(new nebulas.HttpRequest("https://testnet.nebulas.io"));
+	// 搜索功能: 查找Super-Dictionary 中有没有该词条
+	$("#search").click(function () {
+		// $("#search_value").val() 搜索框内的值
+		var from = Account.NewAccount().getAddressString();
+		var value = "0";
+		var nonce = "0"
+		var gas_price = "1000000"
+		var gas_limit = "2000000"
+		var callFunction = "balanceOf";
+		var callArgs =  "[\"" + $("#nickname").val() + "\",\"" + $("#platform_serach").val() + "\",\"" + $("#coinname_search").val()+ "\"]";
+		var contract = {
+			"function": callFunction,
+			"args": callArgs
+		}
+		neb.api.call(from, dappAddress, value, nonce, gas_price, gas_limit, contract).then(function (resp) {
+			cbSearch(resp)
+		}).catch(function (err) {
+			//cbSearch(err)
+			console.log("error:" + err.message)
+		})
+	})
+
+	//return of search,
+	function cbSearch(resp) {
+		var result = resp.result    ////resp is an object, resp.result is a JSON string
+		console.log("return of rpc call: " + JSON.stringify(result))
+
+		if (result === 'null') {
+			$(".add_banner").addClass("hide");
+			$(".result_success").addClass("hide");
+			$("#result_faile_add").text($("#search_value").val())
+			$(".result_faile").removeClass("hide");
+		} else {
+			//if result is not null, then it should be "return value" or "error message"
+			try {
+				result = JSON.parse(result)
+			} catch (err) {
+				//result is the error message
+			}
+
+			if (!!result.key) {      //"return value"
+				$(".add_banner").addClass("hide");
+				$(".result_faile").addClass("hide");
+
+				$("#search_banner").text($("#search_value").val())
+				$("#search_result").text(result.value)
+				$("#search_result_author").text(result.author)
+
+				$(".result_success").removeClass("hide");
+			} else {        //"error message"
+				$(".add_banner").addClass("hide");
+				$(".result_faile").addClass("hide");
+
+				$("#search_banner").text($("#search_value").val())
+				$("#search_result").text(result)
+				$("#search_result_author").text("")
+
+				$(".result_success").removeClass("hide");
+			}
+		}
+	}
+
+	// 添加信息功能: 像super-dictionary 中添加词条
+	$("#add").click(function () {
+		$(".result_faile").addClass("hide");
+		$(".add_banner").removeClass("hide");
+
+		$("#add_value").val("")
+	})
+
+	var NebPay = require("nebpay");     //https://github.com/nebulasio/nebPay
+	var nebPay = new NebPay();
+	var serialNumber
+
+	$("#push").click(function () {
+
+		var to = dappAddress;
+		var value = "0";
+		var callFunction = "save"
+		var callArgs = "[\"" + $("#search_value").val() + "\",\"" + $("#add_value").val() + "\"]"
+
+		serialNumber = nebPay.call(to, value, callFunction, callArgs, {    //使用nebpay的call接口去调用合约,
+			listener: cbPush        //设置listener, 处理交易返回信息
+		});
+
+		intervalQuery = setInterval(function () {
+			funcIntervalQuery();
+		}, 5000);
+	});
+
+	var intervalQuery
+
+	function funcIntervalQuery() {
+		nebPay.queryPayInfo(serialNumber)   //search transaction result from server (result upload to server by app)
+			.then(function (resp) {
+				console.log("tx result: " + resp)   //resp is a JSON string
+				var respObject = JSON.parse(resp)
+				if (respObject.code === 0) {
+					alert(`set ${$("#search_value").val()} succeed!`)
+					clearInterval(intervalQuery)
+				}
+			})
+			.catch(function (err) {
+				console.log(err);
+			});
+	}
+
+	function cbPush(resp) {
+		console.log("response of push: " + JSON.stringify(resp))
+	}
+</script>
+
+</html>
