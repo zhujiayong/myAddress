@@ -19,99 +19,86 @@
 <body>
 	<div class="noExtension hide" id="noExtension">
 		NOTE: Please install
-		<a target="_blank" href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a> to use SUPER DICTIONARY
+		<a target="_blank" href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a> to use myAddress
 	</div>
 	<div id="particles-js"></div>
 
 	<ul class="cb-slideshow">
-		<li></li>
-		<li></li>
+		<li>xxxxx</li>
+		<li>xxx</li>
 		<li></li>
 		<li></li>
 		<li></li>
 		<li></li>
 	</ul>
-	<div class="container-fluid">
-		<div class="row cb-slideshow-text-container ">
-			<div class="tm-content col-xl-10 col-sm-4 col-xs-4 ml-auto section">
-				<header class="mb-5">
-					<h1>Letter</h1>
-				</header>
-				<P class="mb-5">A sign-up letter template with three background images shuffling by fade in out movements. Thank you for visiting our
-					site!
-				</P>
-
-				<form action="#" method="get" class="subscribe-form">
-					<div class="row form-section">
-						<div class="col-md-5 col-sm-5 col-xs-5">
-							<input name="nickname" type="text" class="form-control" id="nickname" placeholder="Your nick_name..." required/>
-						</div>
-						<div class="col-md-1 col-sm-1 col-xs-1">
-							<select class="form-section" id="platform_serach" style="height: 60px;">
-								<option value="">ALL</option>
-								<option value="币安">币安</option>
-								<option value="火币">火币</option>
-							</select>
-						</div>
-						<div class="col-md-2 col-sm-2 col-xs-2">
-							<input name="coinname" type="text" class="form-control" id="coinname_search" placeholder="CoinName" required/>
-						</div>
-						<div class="col-md-4 col-sm-4 col-xs-4">
-							<button type="button" class="tm-btn-subscribe" onclick="search()">Search</button>
-						</div>
+	<div class="row cb-slideshow-text-container ">
+		<div class="tm-content col-xl-10 col-sm-4 col-xs-4 ml-auto section" id="myheader">
+			<header class="mb-5">
+				<h1>欢迎来到地址宝！</h1>
+			</header>
+			<P class="mb-5">还在为繁琐的记住繁琐的币地址烦恼么？地址宝在线为你存储查询你的钱包信息。
+			</P>
+			<form action="#" method="get" class="subscribe-form">
+				<div class="row form-section ">
+					<div class="col-md-2 col-sm-2 col-xs-2">
 					</div>
-					<div class="row form-section">
-						<div class="col-md-1 col-sm-1 col-xs-1">
-							Result:
-						</div>
-						<div class="col-md-11 col-sm-11 col-xs-11">
-							<ul>
-								<li>火币:BTC:xxxxxxxxxxxxxxxxxxxxxxxxxx</li>
-								<li>火币:ETH:xxxxxxxxxxxxxxxxxxxxxxxxxx</li>
-							</ul>
-						</div>
+					<div class="col-md-5 col-sm-5 col-xs-5">
+						<input name="nickname" type="text" class="form-control" id="ipt_nickname" placeholder="你的昵称(电话号码)..." required/>
 					</div>
-					<div class="row form-section">
-						<div class="col-md-1 col-sm-1 col-xs-1">
-							<select class="form-section" style="height: 60px;">
-								<option value="币安">币安</option>
-								<option value="火币">火币</option>
-							</select>
-						</div>
-						<div class="col-md-3 col-sm-3 col-xs-3">
-							<input name="coinname" type="text" class="form-control" id="coinname" placeholder="CoinName" required/>
-						</div>
-						<div class="col-md-4 col-sm-4 col-xs-4">
-							<input name="address" type="text" class="form-control" id="address" placeholder="Address" required/>
-						</div>
-						<div class="col-md-2 col-sm-2 col-xs-2">
-							<button type="button" onclick="add()" class="tm-btn-subscribe">Add</button>
-						</div>
-					</div>
-				</form>
-
-				<div class="tm-social-icons-container text-xs-center">
-					<a href="#" class="tm-social-link">
-						<i class="fa fa-facebook"></i>
-					</a>
-					<a href="#" class="tm-social-link">
-						<i class="fa fa-google-plus"></i>
-					</a>
-					<a href="#" class="tm-social-link">
-						<i class="fa fa-twitter"></i>
-					</a>
-					<a href="#" class="tm-social-link">
-						<i class="fa fa-linkedin"></i>
-					</a>
+					<div class="col-md-3 col-sm-3 col-xs-2"></div>
 				</div>
+				<div class="row form-section ">
+					<div class="col-md-3 col-sm-4 col-xs-3">
+					</div>
+					<div class="col-md-3 col-sm-3 col-xs-3">
+						<button type="button" class="tm-btn-subscribe" onclick="sure()">确定</button>
+					</div>
+					<div class="col-md-3 col-sm-3 col-xs-3"></div>
+				</div>
+			</form>
+		</div>
+	</div>
 
+	<div class="tm-content col-xl-10 col-sm-4 col-xs-4 ml-auto section" id="mainContent" style="display: none;">
+		<header class="mb-5">
+			<h3 id="h_nickname">欢迎来到地址宝！</h3>
+		</header>
+		<form action="#" method="get" class="subscribe-form">
+			<div class="row form-section">
+				<div class="col-md-1 col-sm-1 col-xs-1" style="vertical-align:middle;height: 60px;line-height:60px;">平台:</div>
+				<div class="col-md-1 col-sm-1 col-xs-1">
+					<select class="form-section" id="platform_serach" style="height: 60px;">
+						<option value="">全部</option>
+						<option value="币安">币安</option>
+						<option value="火币">火币</option>
+					</select>
+				</div>
+				<div class="col-md-2 col-sm-2 col-xs-2">
+					<input name="coinname" type="text" class="form-control" id="coinname_search" placeholder="币种" required/>
+				</div>
+				<div class="col-md-4 col-sm-4 col-xs-4">
+					<button type="button" class="tm-btn-subscribe" onclick="search()">查询</button>
+					<button type="button" class="tm-btn-subscribe" onclick="add()">添加</button>
+				</div>
 			</div>
-		</div>
-		<div class="footer-link">
-			<p>Copyright © 2018 auto technology - Design:
-				<a rel="nofollow" href="#" target="_parent">outman</a>
-			</p>
-		</div>
+			<div class="row form-section">
+				<div class="col-md-1 col-sm-1 col-xs-1">
+					查询结果:
+				</div>
+				<div class="col-md-11 col-sm-11 col-xs-11">
+					<ul>
+						<li>火币:BTC:xxxxxxxxxxxxxxxxxxxxxxxxxx</li>
+						<li>火币:ETH:xxxxxxxxxxxxxxxxxxxxxxxxxx</li>
+					</ul>
+				</div>
+			</div>
+		</form>
+	</div>
+	</div>
+	<div class="footer-link">
+		<p>Copyright © 2018 auto technology - Design:
+			<a rel="nofollow" href="#" target="_parent">outman</a>
+		</p>
 	</div>
 </body>
 
@@ -119,9 +106,23 @@
 <script type="text/javascript" src="js/app.js"></script>
 <script src=lib/jquery-3.3.1.min.js></script>
 <script src=lib/nebPay.js></script>
+<script src=js/alert.js></script>
 <script src=lib/bootstrap-4.0.0-dist/js/bootstrap.min.js></script>
 <script src=lib/nebulas.js></script>
 <script type="text/javascript">
+    $(function(){
+		//$("#mainContent").show();
+	});
+	function sure(){
+		if($("#ipt_nickname").val()==="")
+		{
+			myAlert ('系统提示',"昵称不能为空！");
+			return;
+		}
+		$("#myheader").fadeOut();
+		$("#mainContent").fadeIn();
+		$("#h_nickname").text($("#ipt_nickname").val());
+	}
 	function search() {
 		alert("search....");
 	}
@@ -143,7 +144,7 @@
 		var gas_price = "1000000"
 		var gas_limit = "2000000"
 		var callFunction = "balanceOf";
-		var callArgs =  "[\"" + $("#nickname").val() + "\",\"" + $("#platform_serach").val() + "\",\"" + $("#coinname_search").val()+ "\"]";
+		var callArgs = "[\"" + $("#nickname").val() + "\",\"" + $("#platform_serach").val() + "\",\"" + $("#coinname_search").val() + "\"]";
 		var contract = {
 			"function": callFunction,
 			"args": callArgs
