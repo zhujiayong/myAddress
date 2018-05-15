@@ -25,8 +25,8 @@
                 _html += '<input id="mb_btn_ok" type="button" value="确定" />';
             }
             if (type == "confirm") {
-                _html += '<input id="mb_btn_no" type="button" value="确定" />';
-                _html += '<input id="mb_btn_ok" type="button" value="取消" />';
+                _html += '<input id="mb_btn_no" type="button" value="取消" />';
+                _html += '<input id="mb_btn_ok" type="button" value="确定" />';
             }
             _html += '</div></div>';
 
@@ -45,14 +45,14 @@
                     });
                     break;
                 case 'confirm':
-
                     $("#mb_btn_ok").click(function () {
+                        if (callback)
+                            callback(true)
                         $.alerts._hide();
-                        if (callback) callback(true);
                     });
                     $("#mb_btn_no").click(function () {
-                        $.alerts._hide();
                         if (callback) callback(false);
+                        $.alerts._hide();
                     });
                     $("#mb_btn_no").focus();
                     $("#mb_btn_ok, #mb_btn_no").keypress(function (e) {
@@ -86,7 +86,7 @@
         });
 
         $("#mb_con").css({
-            zIndex: '999999', width: '350px', height: '200px', position: 'fixed',
+            zIndex: '999999', width: '500px', height: '300px', position: 'fixed',
             backgroundColor: 'White',
         });
 
@@ -108,7 +108,7 @@
         });
 
         $("#mb_btnbox").css({ margin: '15px 0px 10px 0', textAlign: 'center' });
-        $("#mb_btn_ok,#mb_btn_no").css({ width: '80px', height: '30px', color: 'white', border: 'none', borderRadius: '4px' });
+        $("#mb_btn_ok,#mb_btn_no").css({ width: '80px', height: '40px', color: 'white', border: 'none', borderRadius: '4px' });
         $("#mb_btn_ok").css({ backgroundColor: '#41a259' });
         $("#mb_btn_no").css({ backgroundColor: 'gray', marginRight: '40px' });
 
