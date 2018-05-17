@@ -22,7 +22,7 @@
             _html += '<div id="mb_box"></div><div id="mb_con"><span id="mb_tit">' + title + '</span>';
             _html += '<div id="mb_msg">' + msg + '</div><div id="mb_btnbox">';
             if (type == "alert") {
-                _html += '<input id="mb_btn_ok" type="button" value="确定" />';
+                _html += '<button type="button" class="tm-btn-subscribe" onclick="sure()" id="mb_btn_ok" >确定</button>';
             }
             if (type == "confirm") {
                 _html += '<input id="mb_btn_no" type="button" value="取消" />';
@@ -86,7 +86,7 @@
         });
 
         $("#mb_con").css({
-            zIndex: '999999', width: '500px', height: '300px', position: 'fixed',
+            zIndex: '999999', width: '400px', height: '220px', position: 'fixed',
             backgroundColor: 'White',
         });
 
@@ -108,7 +108,7 @@
         });
 
         $("#mb_btnbox").css({ margin: '15px 0px 10px 0', textAlign: 'center' });
-        $("#mb_btn_ok,#mb_btn_no").css({ width: '80px', height: '40px', color: 'white', border: 'none', borderRadius: '4px' });
+        //$("#mb_btn_ok,#mb_btn_no").css({ width: '80px', height: '40px', color: 'white', border: 'none', borderRadius: '4px' });
         $("#mb_btn_ok").css({ backgroundColor: '#41a259' });
         $("#mb_btn_no").css({ backgroundColor: 'gray', marginRight: '40px' });
 

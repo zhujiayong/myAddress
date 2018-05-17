@@ -8,59 +8,60 @@
 	<title>地址宝</title>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
 	<!-- Google web font "Open Sans" -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<link rel="stylesheet" href="lib/prismjs-1.13.0/prism.css">
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/ui-block.css">
+	<link rel="stylesheet" href="css/codemirror.css">
 	<link rel="stylesheet" href="css/demo.css" />
 	<link rel="stylesheet" href="css/templatemo-style.css">
-	<link rel="stylesheet" href="css/jquery-ui.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
 
 </head>
 
 <body>
-	<div class="noExtension hide" id="noExtension">
-		NOTE: Please install
-		<a target="_blank" href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a> to use myAddress
-	</div>
 	<div id="particles-js"></div>
 
 	<ul class="cb-slideshow">
-		<li>xxxxx</li>
-		<li>xxx</li>
+		<li></li>
+		<li></li>
 		<li></li>
 		<li></li>
 		<li></li>
 		<li></li>
 	</ul>
 	<div class="row cb-slideshow-text-container ">
-		<div class="tm-content col-xl-10 col-sm-4 col-xs-4 ml-auto section" id="myheader">
-			<header class="mb-5">
+		<div class="tm-content col-xl-12 col-sm-4 col-xs-4 ml-auto section" id="myheader" style="margin-top: 20vh">
+			<header class="mb-5" style="text-align: center">
 				<h1>欢迎来到地址宝！</h1>
 			</header>
-			<P class="mb-5">还在为繁琐的记住繁琐的币地址烦恼么？地址宝在线为你存储查询你的钱包信息。
+			<P class="mb-5" style="text-align: center">还在为繁琐的记住繁琐的币地址烦恼么？地址宝在线为你存储查询你的钱包信息。
 			</P>
 			<form action="#" method="get" class="subscribe-form">
 				<div class="row form-section ">
-					<div class="col-md-2 col-sm-2 col-xs-2">
+					<div class="col-md-4 col-sm-4 col-xs-4">
 					</div>
-					<div class="col-md-5 col-sm-5 col-xs-5">
+					<div class="col-md-4 col-sm-4 col-xs-4">
 						<input name="nickname" type="text" class="form-control" id="ipt_nickname" placeholder="你的昵称(电话号码)..." required/>
 					</div>
-					<div class="col-md-3 col-sm-3 col-xs-2"></div>
+					<div class="col-md-4 col-sm-4 col-xs-4"></div>
 				</div>
 				<div class="row form-section ">
-					<div class="col-md-3 col-sm-4 col-xs-3">
+					<div class="col-md-4 col-sm-4 col-xs-4">
 					</div>
-					<div class="col-md-3 col-sm-3 col-xs-3">
-						<button type="button" class="tm-btn-subscribe" onclick="sure()">确定</button>
+					<div class="col-md-4 col-sm-4 col-xs-4" style="text-align: center">
+						<button type="button" class="tm-btn-subscribe" onclick="sure()">确 定</button>
 					</div>
-					<div class="col-md-3 col-sm-3 col-xs-3"></div>
+					<div class="col-md-4 col-sm-4 col-xs-4"></div>
 				</div>
 			</form>
 		</div>
 	</div>
 
-	<div class="tm-content col-xl-10 col-sm-4 col-xs-4 ml-auto section" id="mainContent" style="display: none;">
+	<div class="tm-content col-xl-10 col-sm-1 col-xs-1 ml-auto section" id="mainContent" style="display: none;margin-top: 10vh">
 		<header class="mb-5">
 			<h3>
 				<span id="h_nickname"> 欢迎来到地址宝！</span>
@@ -70,66 +71,81 @@
 		<form action="#" method="get" class="subscribe-form">
 			<div class="row form-section">
 				<div class="col-md-1 col-sm-1 col-xs-1" style="vertical-align:middle;height: 60px;line-height:60px;">平台:</div>
-				<div class="col-md-1 col-sm-1 col-xs-1">
-					<select class="form-section" id="platform_serach" style="height: 60px;">
-						<option value="">全部</option>
-						<option value="币安">币安</option>
-						<option value="火币">火币</option>
-					</select>
-				</div>
 				<div class="col-md-2 col-sm-2 col-xs-2">
-					<input name="coinname" type="text" class="form-control" id="coinname_search" placeholder="币种" required/>
+					<input name="coinname" type="text" class="form-control" id="platform_serach" placeholder="请输入平台" required/>
 				</div>
 				<div class="col-md-4 col-sm-4 col-xs-4">
+					<input name="coinname" type="text" class="form-control" id="coinname_search" placeholder="请输入币种" required/>
+				</div>
+				<div class="col-md-3 col-sm-2 col-xs-2">
 					<button type="button" class="tm-btn-subscribe" onclick="search()">查询</button>
 					<button type="button" class="tm-btn-subscribe" onclick="add()">添加</button>
 				</div>
 			</div>
 			<div class="row form-section">
 				<div class="col-md-1 col-sm-1 col-xs-1">
-					结果:
+
 				</div>
-				<div class="col-md-11 col-sm-11 col-xs-11">
-					<ul id="serach_result">
-						<li>请点击查询按钮</li>
-					</ul>
+				<div class="col-md-9 col-sm-2 col-xs-2">
+					<div id="serach_result">
+
+					</div>
 				</div>
 			</div>
 		</form>
 	</div>
-	</div>
-	<div class="footer-link">
-		<p>Copyright © 2018 auto technology - Design:
-			<a rel="nofollow" href="#" target="_parent">outman</a>
-		</p>
-	</div>
 
-	<div class="tm-content col-xl-10 col-sm-4 col-xs-4 ml-auto section" id="add_dialog" style="display: none;">
+	<div class="tm-content col-xl-9 col-sm-4 col-xs-4 ml-auto section" id="addform" style="display: none;margin-top: 10vh">
 		<form action="#" method="get" class="subscribe-form">
 			<div class="row form-section">
-				<div class="col-md-3 col-sm-3 col-xs-3" style="vertical-align:middle;height: 60px;line-height:60px;">平台:</div>
-				<div class="col-md-7 col-sm-7 col-xs-7">
-					<select class="form-section" id="platform_serach" style="height: 60px;">
-						<option value="">全部</option>
-						<option value="币安">币安</option>
-						<option value="火币">火币</option>
-					</select>
+				<div class="col-md-8 col-sm-2 col-xs-2">
+					<div class="select-wallet-file"></div>
+					<div class="form-group row">
+						<div class=col>
+							<label data-i18n=send-nas/from-address></label>
+							<div class=icon-address data-id=run_from_addr data-disabled></div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="row form-section">
-				<div class="col-md-3 col-sm-3 col-xs-3" style="vertical-align:middle;height: 60px;line-height:60px;">币种:</div>
-				<div class="col-md-7 col-sm-7 col-xs-7">
-					<input name="coinname" type="text" class="form-control" id="coinname_search" placeholder="币种" required/>
+				<div class="col-md-2 col-sm-2 col-xs-2" style="vertical-align:middle;height: 60px;line-height:60px;">平台:</div>
+				<div class="col-md-5 col-sm-2 col-xs-2">
+					<input name="coinname" type="text" class="form-control" id="platform_add" placeholder="请输入平台" required/>
 				</div>
 			</div>
 			<div class="row form-section">
-				<div class="col-md-3 col-sm-3 col-xs-3" style="vertical-align:middle;height: 60px;line-height:60px;"></div>
-				<div class="col-md-7 col-sm-7 col-xs-7">
+				<div class="col-md-2 col-sm-4 col-xs-4">
+					币种:
+				</div>
+				<div class="col-md-5 col-sm-2 col-xs-2">
+					<input name="coinname" type="text" class="form-control" id="coinname_add" placeholder="请输入币种" required/>
+				</div>
+			</div>
+			<div class="row form-section">
+				<div class="col-md-2 col-sm-1 col-xs-1">
+					地址:
+				</div>
+				<div class="col-md-5 col-sm-1 col-xs-1">
+					<input name="coinname" type="text" class="form-control" id="coinname_add" placeholder="请输入地址" required/>
+				</div>
+			</div>
+			<div class="row form-section">
+				<div class="col-md-2 col-sm-4 col-xs-4">
+				</div>
+				<div class="col-md-5 col-sm-1 col-xs-1">
 					<button type="button" class="tm-btn-subscribe" onclick="submit()">提交</button>
 					<button type="button" class="tm-btn-subscribe" onclick="cancel()">取消</button>
 				</div>
 			</div>
 		</form>
+	</div>
+
+	</div>
+	<div class="footer-link">
+		<p>Copyright © 2018 auto technology - Design:
+			<a rel="nofollow" href="#" target="_parent">outman</a>
+		</p>
 	</div>
 </body>
 
@@ -140,8 +156,17 @@
 <script src=lib/nebPay.js></script>
 <script src=js/alert.js></script>
 <script src=lib/bootstrap-4.0.0-dist/js/bootstrap.min.js></script>
+<script src=lib/bootbox.min.js data-depends="bootstrap jquery.slim"></script>
+<script src=lib/blockies.min.js></script>
+<script src=lib/js-beautify-1.7.5/beautify.js></script>
+<script src=lib/prismjs-1.13.0/prism.js></script>
 <script src=lib/nebulas.js></script>
+<script src=js/1-localSave.js></script>
+<script src=js/home.v1.js></script>
+<script src=js/i18n.js data-depends=jquery.slim></script>
+<script src=js/ui-block.js data-depends="bootbox blockies jquery.slim i18n.js nebulas.js"></script>
 <script type="text/javascript">
+	"use strict";
 
 	function sure() {
 		if ($("#ipt_nickname").val() === "") {
@@ -149,6 +174,7 @@
 			return;
 		}
 		$("#myheader").fadeOut();
+		$("#addform").fadeOut();
 		$("#mainContent").fadeIn();
 		$("#h_nickname").text($("#ipt_nickname").val());
 		search();
@@ -156,14 +182,28 @@
 	function edit_nickname() {
 		$("#myheader").fadeIn();
 		$("#mainContent").fadeOut();
+		$("#addform").fadeOut();
 	}
-	
+
 	var dappAddress = "n1grRkmdvt4WSeWjEsWRz5zngBeb4srWTiM";
 	var nebulas = require("nebulas"),
+		Utils = nebulas.Utils,
 		Account = nebulas.Account,
-		neb = new nebulas.Neb();
-	neb.setRequest(new nebulas.HttpRequest("https://testnet.nebulas.io"));
-	var from = Account.NewAccount().getAddressString();
+		neb = new nebulas.Neb(),
+		globalParams = {
+			account: null
+		};
+
+	neb.setRequest(new nebulas.HttpRequest(localSave.getItem("apiPrefix") || "https://testnet.nebulas.io/"));
+	uiBlock.insert({
+		footer: ".footer",
+		header: ".header",
+		iconAddress: ".icon-address",
+		logoMain: ".logo-main",
+		numberComma: ".number-comma",
+		selectWalletFile: [".select-wallet-file", onUnlockFile]
+	});
+	var from = "n1ExsLQe3ExsHSRgEwfKPP3LeLjoq63KqRv";//Account.NewAccount().getAddressString();
 	// 搜索功能: 查找Super-Dictionary 中有没有该词条
 	function search() {
 		// $("#search_value").val() 搜索框内的值
@@ -189,8 +229,8 @@
 		var result = resp.result    ////resp is an object, resp.result is a JSON string
 		console.log("return of rpc call: " + JSON.stringify(result))
 		if (result === 'null') {
-			var ul = $("#serach_result").empty();
-			$("<li>没查询出任何结果（可能你并没有录入过数据，请点击添加按钮 添加数据）</li>").appendTo(ul);
+			var div = $("#serach_result").empty();
+			$("<div>没查询出任何结果（可能你并没有录入过数据，请点击添加按钮 添加数据）</div>").appendTo(div);
 		} else {
 			//if result is not null, then it should be "return value" or "error message"
 			try {
@@ -198,8 +238,10 @@
 			} catch (err) {
 				//result is the error message
 			}
-			var ul = $("#serach_result").empty();
+			var div = $("#serach_result").empty();
 			if (!!result.addressModels) {      //"return value"
+				var table = $("<table style='width: 100%'></table>");
+				var tr_head = $("<tr><td>平台</td><td>币种</td><td>地址</td></tr>").appendTo(table);
 				for (var i = 0; i < result.addressModels.length; i++) {
 					var o = result.addressModels[i];
 					if ($("#platform_serach").val() !== "" && o.platform !== $("#platform_serach").val()) {
@@ -208,57 +250,107 @@
 					if ($("#coinname_search").val() !== "" && o.tokenName !== $("#coinname_search").val()) {
 						continue;
 					}
-					$("<li>[" + o.platform + "]" + o.tokenName + ":" + o.address + "</li>").appendTo(ul);
+					$("<tr><td>" + o.platform + "</td><td>" + o.tokenName + "</td><td>" + o.address + "</td></tr>").appendTo(table);
 				}
-				if ($("#serach_result").children().length === 0) {
-					$("<li>没查询出任何结果</li>").appendTo(ul);
+				if (table.children().length === 1) {
+					$("<div>没查询出任何结果</div>").appendTo(div);
 				}
+				else table.appendTo(div);
 			} else {
-				$("<li>没查询出任何结果</li>").appendTo(ul);
+				$("<div>没查询出任何结果</div>").appendTo(div);
 			}
 		}
 	}
 	function add() {
-		var html = "<div>平台: <select id='add_platform'><option value='币安'>币安</option> <option value='火币'>火币</option> </select></div>";
-		html += "<div>币种:<input type='text' id='add_cointype' style='width:200px;'>";
-		html += "<div>地址:<input type='text' id='add_address'  style='width:200px;'>";
-		myConfirm("添加信息", html, function (result) {
-			if (result) {
-				var value = "0";
-				var nonce = "0"
-				var gas_price = "1000000"
-				var gas_limit = "2000000"
-				var callFunction = "save";
-				var nickname = $("#h_nickname").text();
-				var platform = $("#add_platform").val();
-				if(platform==""){
-					myAlert("系统提示","平台不能为空！");
-					return false;
+		/*	var html = "<div>平台: <select id='add_platform'><option value='币安'>币安</option> <option value='火币'>火币</option> </select></div>";
+			html += "<div>币种:<input type='text' id='add_cointype' style='width:200px;'>";
+			html += "<div>地址:<input type='text' id='add_address'  style='width:200px;'>";
+			myConfirm("添加信息", html, function (result) {
+				if (result) {
+					var value = "0";
+					var nonce = "0"
+					var gas_price = "1000000"
+					var gas_limit = "2000000"
+					var callFunction = "save";
+					var nickname = $("#h_nickname").text();
+					var platform = $("#add_platform").val();
+					if (platform == "") {
+						myAlert("系统提示", "平台不能为空！");
+						return false;
+					}
+					var tokenName = $("#add_cointype").val();
+					if (tokenName == "") {
+						myAlert("系统提示", "币名称不能为空！");
+						return false;
+					}
+					var address = $("#add_address").val();
+					if (address == "") {
+						myAlert("系统提示", "地址不能为空！");
+						return false;
+					}
+					var callArgs = "[\"" + nickname + "\",\"" + platform + "\",\"" + tokenName + "\",\"" + address + "\"]";
+					var contract = {
+						"function": callFunction,
+						"args": callArgs
+					}
+					neb.api.call(from, dappAddress, value, nonce, gas_price, gas_limit, contract).then(function (resp) {
+						cbSearch(resp)
+					}).catch(function (err) {
+						//cbSearch(err)
+						console.log("error:" + err.message)
+					})
+					return true;
 				}
-				var tokenName =$("#add_cointype").val();
-				if(tokenName==""){
-					myAlert("系统提示","币名称不能为空！");
-					return false;
-				}
-				var address =$("#add_address").val();
-				if(address==""){
-					myAlert("系统提示","地址不能为空！");
-					return false;
-				}
-				var callArgs = "[\"" + nickname + "\",\"" + platform + "\",\"" + tokenName + "\",\"" + address + "\"]";
-				var contract = {
-					"function": callFunction,
-					"args": callArgs
-				}
-				neb.api.call(from, dappAddress, value, nonce, gas_price, gas_limit, contract).then(function (resp) {
-					cbSearch(resp)
-				}).catch(function (err) {
-					//cbSearch(err)
-					console.log("error:" + err.message)
-				})
-				return true;
-			}
-		})
+			})*/
+		$("#myheader").fadeOut();
+		$("#mainContent").fadeOut();
+		$("#addform").fadeIn();
 	}
+	function onUnlockFile(swf, fileJson, account, password) {
+		var balance_nas, state,
+			fromAddr = account.getAddressString(),
+			$tab = $(swf).closest(".tab");
+
+		$(".modal.loading").modal("show");
+		$("#run_from_addr").val(fromAddr).trigger("input");
+		try {
+			account.fromKey(fileJson, password);
+			globalParams.account = account;
+			neb.api.gasPrice()
+				.then(function (resp) {
+					$("#gas_price").val(resp.gas_price);
+					$("#run_gas_price").val(resp.gas_price);
+					return neb.api.getAccountState(fromAddr);
+				})
+				.then(function (resp) {
+					var balance = nebulas.Unit.fromBasic(resp.balance, "nas");
+					$("#run_balance").val(balance + " NAS");
+					$(".modal.loading").modal("hide");
+				})
+				.catch(function (e) {
+					// this catches e thrown by nebulas.js!neb
+					bootbox.dialog({
+						backdrop: true,
+						onEscape: true,
+						message: i18n.apiErrorToText(e.message),
+						size: "large",
+						title: "Error"
+					});
+					$(".modal.loading").modal("hide");
+				});
+		} catch (e) {
+			// this catches e thrown by nebulas.js!account
+			bootbox.dialog({
+				backdrop: true,
+				onEscape: true,
+				message: localSave.getItem("lang") == "en" ? e : "keystore 文件错误, 或者密码错误",
+				size: "large",
+				title: "Error"
+			});
+			$(".modal.loading").modal("hide");
+		}
+	}
+
 </script>
+
 </html>
