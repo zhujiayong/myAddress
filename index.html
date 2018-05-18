@@ -23,6 +23,10 @@
 </head>
 
 <body>
+	<div class="noExtension hide" id="noExtension">
+		NOTE: Please install
+		<a target="_blank" href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a> to use myAddress
+	</div>
 	<div id="particles-js"></div>
 
 	<ul class="cb-slideshow">
@@ -152,8 +156,6 @@
 <script type="text/javascript" src="js/particles.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
 <script src=lib/jquery-3.3.1.min.js></script>
-<script type="text/javascript" src="js/jquery-ui.js"></script>
-<script src=lib/nebPay.js></script>
 <script src=js/alert.js></script>
 <script src=lib/bootstrap-4.0.0-dist/js/bootstrap.min.js></script>
 <script src=lib/bootbox.min.js data-depends="bootstrap jquery.slim"></script>
@@ -161,6 +163,7 @@
 <script src=lib/js-beautify-1.7.5/beautify.js></script>
 <script src=lib/prismjs-1.13.0/prism.js></script>
 <script src=lib/nebulas.js></script>
+<script src=lib/nebPay.js></script>
 <script src=js/1-localSave.js></script>
 <script src=js/home.v1.js></script>
 <script src=js/i18n.js data-depends=jquery.slim></script>
@@ -193,8 +196,7 @@
 		globalParams = {
 			account: null
 		};
-
-	neb.setRequest(new nebulas.HttpRequest("https://testnet.nebulas.io/"));
+	neb.setRequest(new nebulas.HttpRequest("https://testnet.nebulas.io"));
 	uiBlock.insert({
 		footer: ".footer",
 		header: ".header",
