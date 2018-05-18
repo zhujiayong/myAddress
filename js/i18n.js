@@ -32,8 +32,8 @@ var i18n = function () {
             "contract/contract_codetype": "Programming Language :",
             "contract/contract_codetype_banner": "（ Please select the code type ！）",
             "contract/contract_fun": "arguments",
-            "contract/contract_fun_prompt":" for example : ['x'] ",
-            "contract/contract_fn_prompt":"function (x) { } ",
+            "contract/contract_fun_prompt": " for example : ['x'] ",
+            "contract/contract_fn_prompt": "function (x) { } ",
             "contract/contract_funtion": "function",
             "contract/err_msg": "Red part information is wrong，Please enter a valid msg",
             "contract/err_msg_hash": "Please enter a valid TX hash",
@@ -130,7 +130,7 @@ var i18n = function () {
             "contract/contract_codetype_banner": "（ 请选择代码类型 ！）",
             "contract/contract_fun": "参数 ",
             "contract/contract_fun_prompt": "例如 ：“【x】” ",
-            "contract/contract_fn_prompt":"例如 ：function (x) { } ",
+            "contract/contract_fn_prompt": "例如 ：function (x) { } ",
             "contract/contract_funtion": "函数",
             "contract/err_msg": "红色部分信息错误，请输入有效信息",
             "contract/err_msg_hash": "请输入有效的交易哈希",
@@ -213,76 +213,77 @@ var i18n = function () {
     };
 
     function apiErrorToText(s) {
-        var lang = localSave.getItem("lang"),
-            table = {
-                unknown: {
-                    en: "unknown error",
-                    zh: "未知错误"
-                },
-                "Network Error": {
-                    en: s,
-                    zh: "网络错误"
-                },
-                // getAccountState
-                "address: invalid address format": {
-                    en: s,
-                    zh: "地址格式无效"
-                },
-                // GetTransactionReceipt
-                "invalid argument(s)": {
-                    en: "invalid transaction hash",
-                    zh: "无效的交易哈希"
-                },
-                "params eror/system error": {
-                    en: "transaction hash or system error",
-                    zh: "交易哈希或者系统错误"
-                },
-                "transaction not found": {
-                    en: "transaction not found",
-                    zh: "交易未找到"
-                },
-                // senRawTransaction
-                "transaction's nonce is invalid, should bigger than the from's nonce": {
-                    en: s,
-                    zh: "交易的 nonce 无效，应该大于发送方的 nonce"
-                },
-                "contract transaction from-address not equal to to-address": {
-                    en: s,
-                    zh: "发布合约的 from / to 地址不一致"
-                },
-                "contract check failed": {
-                    en: s,
-                    zh: "合约地址无效"
-                },
-                "duplicated transaction": {
-                    en: s,
-                    zh: "不能重复提交相同的交易"
-                },
-                "below the gas price gas": {
-                    en: s,
-                    zh: "价格太低"
-                },
-                "gas limit less or equal to 0 ": {
-                    en: s,
-                    zh: "gas 限制应该大于 0"
-                },
-                "out of gas limit": {
-                    en: s,
-                    zh: "gas 限制过大"
-                },
-                "invalid transaction chainID": {
-                    en: s,
-                    zh: "无效的 chain id"
-                },
-                "invalid transaction hash": {
-                    en: s,
-                    zh: "交易哈希无效"
-                },
-                "invalid transaction signer": {
-                    en: s,
-                    zh: "无效的交易签名"
-                }
-            };
+        //  var lang = localSave.getItem("lang"),
+        var lang = "zh";
+        table = {
+            unknown: {
+                en: "unknown error",
+                zh: "未知错误"
+            },
+            "Network Error": {
+                en: s,
+                zh: "网络错误"
+            },
+            // getAccountState
+            "address: invalid address format": {
+                en: s,
+                zh: "地址格式无效"
+            },
+            // GetTransactionReceipt
+            "invalid argument(s)": {
+                en: "invalid transaction hash",
+                zh: "无效的交易哈希"
+            },
+            "params eror/system error": {
+                en: "transaction hash or system error",
+                zh: "交易哈希或者系统错误"
+            },
+            "transaction not found": {
+                en: "transaction not found",
+                zh: "交易未找到"
+            },
+            // senRawTransaction
+            "transaction's nonce is invalid, should bigger than the from's nonce": {
+                en: s,
+                zh: "交易的 nonce 无效，应该大于发送方的 nonce"
+            },
+            "contract transaction from-address not equal to to-address": {
+                en: s,
+                zh: "发布合约的 from / to 地址不一致"
+            },
+            "contract check failed": {
+                en: s,
+                zh: "合约地址无效"
+            },
+            "duplicated transaction": {
+                en: s,
+                zh: "不能重复提交相同的交易"
+            },
+            "below the gas price gas": {
+                en: s,
+                zh: "价格太低"
+            },
+            "gas limit less or equal to 0 ": {
+                en: s,
+                zh: "gas 限制应该大于 0"
+            },
+            "out of gas limit": {
+                en: s,
+                zh: "gas 限制过大"
+            },
+            "invalid transaction chainID": {
+                en: s,
+                zh: "无效的 chain id"
+            },
+            "invalid transaction hash": {
+                en: s,
+                zh: "交易哈希无效"
+            },
+            "invalid transaction signer": {
+                en: s,
+                zh: "无效的交易签名"
+            }
+        };
 
         return table[s] ? table[s][lang] || table[s].en : table.unknown[lang] || table.unknown.en;
     }
