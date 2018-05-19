@@ -398,7 +398,8 @@
 	function add_do() {
 		$(".modal.loading").modal("show");
 		innerCall(function (params) {
-			var gTx = new nebulas.Transaction(parseInt(localSave.getItem("chainId")),
+			//var gTx = new nebulas.Transaction(parseInt(localSave.getItem("chainId")),
+			var gTx = new nebulas.Transaction(1001,
 				globalParams.account,
 				params.to, params.value, params.nonce, params.gasPrice, params.gasLimit, params.contract);
 
