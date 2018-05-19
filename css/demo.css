@@ -192,3 +192,15 @@ p.codrops-demos a.current-demo:hover{
 		left: auto;
 	}
 }
+.active1 {
+	display: none;
+}
+
+.download {
+	margin-top: 48px;
+	text-align: center;
+}
+
+.wallet_help {
+	font-size: 0.8rem;
+}

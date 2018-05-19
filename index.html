@@ -10,7 +10,6 @@
 	<!-- Google web font "Open Sans" -->
 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/jquery-ui.css">
 	<link rel="stylesheet" href="lib/prismjs-1.13.0/prism.css">
 	<link rel="stylesheet" href="css/base.css">
 	<link rel="stylesheet" href="css/ui-block.css">
@@ -67,12 +66,13 @@
 
 	<div class="tm-content col-xl-10 col-sm-1 col-xs-1 ml-auto section" id="mainContent" style="display: none;margin-top: 10vh">
 		<header class="mb-5">
-			<h3>
+			<h2>
 				<span id="h_nickname"> 欢迎来到地址宝！</span>
 				<a href="javascript:edit_nickname()" style="font-size: 12px;">修改</a>
-			</h3>
+			</h2>
+			<div style="font-size:15px;">注： 如果你添加的信息未及时出现请稍后再点查询 </div>
 		</header>
-		<form action="#" method="get" class="subscribe-form">
+		<form method="get" class="subscribe-form">
 			<div class="row form-section">
 				<div class="col-md-1 col-sm-1 col-xs-1" style="vertical-align:middle;height: 60px;line-height:60px;">平台:</div>
 				<div class="col-md-2 col-sm-2 col-xs-2">
@@ -98,10 +98,16 @@
 			</div>
 		</form>
 	</div>
-
-	<div class="tm-content col-xl-9 col-sm-4 col-xs-4 ml-auto section" id="addform" style="display: none;margin-top: 10vh">
-		<form action="#" method="get" class="subscribe-form">
-			<div class="row form-section">
+	<div id="div_add" style="display: none;">
+		<div class="tm-content col-xl-9 col-sm-4 col-xs-4 ml-auto section" id="unlockform" style="margin-top: 5vh">
+			<header class="mb-5">
+				<div><button class="tm-btn-subscribe" onclick="backtoList()">返回查询</button></div>
+				<div style="font-size:18px;">如果你还没有钱包请点击
+					<a href="javascript:createNewWallet()">>>创建钱包
+						<<</a>
+				</div>
+			</header>
+			<div class="row form-section" id="div_forlock">
 				<div class="col-md-8 col-sm-2 col-xs-2">
 					<div class="select-wallet-file"></div>
 					<div class="form-group row">
@@ -112,45 +118,96 @@
 					</div>
 				</div>
 			</div>
-			<div class="row form-section">
-				<div class="col-md-2 col-sm-2 col-xs-2" style="vertical-align:middle;height: 60px;line-height:60px;">平台:</div>
-				<div class="col-md-5 col-sm-2 col-xs-2">
-					<input name="coinname" type="text" class="form-control" id="platform_add" placeholder="请输入平台" required/>
+		</div>
+		<div class="tm-content col-xl-9 col-sm-4 col-xs-4 ml-auto section" id="newWalletform" style="display: none;margin-top: 5vh">
+			<div class="container wallet" style="padding-right: 30vw">
+				<div id=newWallet>
+				<div><button class="tm-btn-subscribe" onclick="createnewWalletBack()">返回</button></div>
+					<div class=form-group>
+						<label for=password data-i18n=new/enter-password>输入密码:（不少于9位数）</label>
+						<input type=password class=form-control id=password data-i18n=new/placeholder/do-not-forget placeholder="别忘了这个" data-validate-order-matters="required lengthGt8">
+					</div>
+					<button class="btn btn-block" data-i18n=new/new id=creat>新建钱包</button>
 				</div>
+				<div class="active1 download">
+					<h2>
+						<span data-i18n=new/save1>保存你的</span>
+						<code data-i18n=keystore-file></code>
+						<span data-i18n=new/save3>密码库文件</span>
+					</h2>
+					<button class="btn btn-block" data-i18n=new/gen>下载密码库文件</button>
+				</div>
+				<p class=wallet_help data-i18n=new/comment>
+					该密码用于加密您的私钥。
+					<br>他不做为产生私钥的种子。
+					<br> 您需要该密码 + 您的私钥以解锁您的钱包.
+				</p>
 			</div>
-			<div class="row form-section">
-				<div class="col-md-2 col-sm-4 col-xs-4">
-					币种:
-				</div>
-				<div class="col-md-5 col-sm-2 col-xs-2">
-					<input name="coinname" type="text" class="form-control" id="coinname_add" placeholder="请输入币种" required/>
-				</div>
-			</div>
-			<div class="row form-section">
-				<div class="col-md-2 col-sm-1 col-xs-1">
-					地址:
-				</div>
-				<div class="col-md-5 col-sm-1 col-xs-1">
-					<input name="coinname" type="text" class="form-control" id="address_add" placeholder="请输入地址" required/>
-				</div>
-			</div>
-			<div class="row form-section">
-				<div class="col-md-2 col-sm-4 col-xs-4">
-				</div>
-				<div class="col-md-5 col-sm-1 col-xs-1">
-					<button type="button" class="tm-btn-subscribe" onclick="submit()">提交</button>
-					<button type="button" class="tm-btn-subscribe" onclick="cancel()">取消</button>
-				</div>
-			</div>
-		</form>
-	</div>
+		</div>
+		<div class="tm-content col-xl-9 col-sm-4 col-xs-4 ml-auto section" id="addform" style="display: none;margin-top: 5vh">
+			<form method="get" class="subscribe-form">
+				<header class="mb-5">
+					<h3>
+						<span id="sp_fromAddress"> 欢迎来到地址宝！</span>
+						<a href="javascript:return_toUnlock()" style="font-size: 12px;">返回解锁</a>
 
+					</h3>
+				</header>
+				<div class="row form-section">
+					<div class="col-md-2 col-sm-2 col-xs-2" style="vertical-align:middle;height: 60px;line-height:60px;">余额：</div>
+					<div class="col-md-5 col-sm-2 col-xs-2">
+						<input class=form-control disabled id=run_balance>
+					</div>
+				</div>
+				<div class="row form-section">
+					<div class="col-md-2 col-sm-2 col-xs-2" style="vertical-align:middle;height: 60px;line-height:60px;">平台:</div>
+					<div class="col-md-5 col-sm-2 col-xs-2">
+						<input name="coinname" type="text" class="form-control" id="platform_add" placeholder="请输入平台" required/>
+					</div>
+				</div>
+				<div class="row form-section">
+					<div class="col-md-2 col-sm-4 col-xs-4">
+						币种:
+					</div>
+					<div class="col-md-5 col-sm-2 col-xs-2">
+						<input name="coinname" type="text" class="form-control" id="coinname_add" placeholder="请输入币种" required/>
+					</div>
+				</div>
+				<div class="row form-section">
+					<div class="col-md-2 col-sm-1 col-xs-1">
+						地址:
+					</div>
+					<div class="col-md-5 col-sm-1 col-xs-1">
+						<input name="coinname" type="text" class="form-control" id="address_add" placeholder="请输入地址" required/>
+					</div>
+				</div>
+				<div class="row form-section">
+					<div class="col-md-2 col-sm-4 col-xs-4">
+					</div>
+					<div class="col-md-5 col-sm-1 col-xs-1">
+						<button type="button" class="tm-btn-subscribe" onclick="add_do()">提交</button>
+						<button type="button" class="tm-btn-subscribe" onclick="cancel()">取消</button>
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
-	<div class="footer-link">
+	<div class="fade loading modal" data-backdrop=static>
+		<div class=modal-dialog>
+			<div class=modal-content>
+				<div class=modal-body>
+					<div class=progress>
+						<div class="progress-bar progress-bar-striped progress-bar-animated" role=progressbar style="width: 100%"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--<div class="footer-link">
 		<p>Copyright © 2018 auto technology - Design:
 			<a rel="nofollow" href="#" target="_parent">outman</a>
 		</p>
-	</div>
+	</div>-->
 </body>
 
 <script type="text/javascript" src="js/particles.js"></script>
@@ -165,19 +222,20 @@
 <script src=lib/nebulas.js></script>
 <script src=lib/nebPay.js></script>
 <script src=js/1-localSave.js></script>
+<script src=lib/Blob.js></script>
+<script src=lib/FileSaver.min.js></script>
 <script src=js/home.v1.js></script>
 <script src=js/i18n.js data-depends=jquery.slim></script>
 <script src=js/ui-block.js data-depends="bootbox blockies jquery.slim i18n.js nebulas.js"></script>
 <script type="text/javascript">
 	"use strict";
-	
 	function sure() {
 		if ($("#ipt_nickname").val() === "") {
 			myAlert('系统提示', "昵称不能为空！");
 			return;
 		}
 		$("#myheader").fadeOut();
-		$("#addform").fadeOut();
+		$("#div_add").fadeOut();
 		$("#mainContent").fadeIn();
 		$("#h_nickname").text($("#ipt_nickname").val());
 		search();
@@ -185,14 +243,18 @@
 	function edit_nickname() {
 		$("#myheader").fadeIn();
 		$("#mainContent").fadeOut();
-		$("#addform").fadeOut();
+		$("#div_add").fadeOut();
 	}
-
 	var dappAddress = "n1grRkmdvt4WSeWjEsWRz5zngBeb4srWTiM";
+	var value = "0";
+	var nonce = "0"
+	var gas_price = "1000000"
+	var gas_limit = "2000000"
 	var nebulas = require("nebulas"),
 		Utils = nebulas.Utils,
 		Account = nebulas.Account,
 		neb = new nebulas.Neb(),
+		validateAll = uiBlock.validate(),
 		globalParams = {
 			account: null
 		};
@@ -209,10 +271,7 @@
 	// 搜索功能: 查找Super-Dictionary 中有没有该词条
 	function search() {
 		// $("#search_value").val() 搜索框内的值
-		var value = "0";
-		var nonce = "0"
-		var gas_price = "1000000"
-		var gas_limit = "2000000"
+
 		var callFunction = "get";
 		var callArgs = "[\"" + $("#h_nickname").text() + "\"]";
 		var contract = {
@@ -264,49 +323,9 @@
 		}
 	}
 	function add() {
-		/*	var html = "<div>平台: <select id='add_platform'><option value='币安'>币安</option> <option value='火币'>火币</option> </select></div>";
-			html += "<div>币种:<input type='text' id='add_cointype' style='width:200px;'>";
-			html += "<div>地址:<input type='text' id='add_address'  style='width:200px;'>";
-			myConfirm("添加信息", html, function (result) {
-				if (result) {
-					var value = "0";
-					var nonce = "0"
-					var gas_price = "1000000"
-					var gas_limit = "2000000"
-					var callFunction = "save";
-					var nickname = $("#h_nickname").text();
-					var platform = $("#add_platform").val();
-					if (platform == "") {
-						myAlert("系统提示", "平台不能为空！");
-						return false;
-					}
-					var tokenName = $("#add_cointype").val();
-					if (tokenName == "") {
-						myAlert("系统提示", "币名称不能为空！");
-						return false;
-					}
-					var address = $("#add_address").val();
-					if (address == "") {
-						myAlert("系统提示", "地址不能为空！");
-						return false;
-					}
-					var callArgs = "[\"" + nickname + "\",\"" + platform + "\",\"" + tokenName + "\",\"" + address + "\"]";
-					var contract = {
-						"function": callFunction,
-						"args": callArgs
-					}
-					neb.api.call(from, dappAddress, value, nonce, gas_price, gas_limit, contract).then(function (resp) {
-						cbSearch(resp)
-					}).catch(function (err) {
-						//cbSearch(err)
-						console.log("error:" + err.message)
-					})
-					return true;
-				}
-			})*/
 		$("#myheader").fadeOut();
 		$("#mainContent").fadeOut();
-		$("#addform").fadeIn();
+		$("#div_add").fadeIn();
 	}
 	function onUnlockFile(swf, fileJson, account, password) {
 		var balance_nas, state,
@@ -328,6 +347,9 @@
 					var balance = nebulas.Unit.fromBasic(resp.balance, "nas");
 					$("#run_balance").val(balance + " NAS");
 					$(".modal.loading").modal("hide");
+					$("#unlockform").hide();
+					$("#addform").show();
+					$("#sp_fromAddress").text(fromAddr);
 				})
 				.catch(function (e) {
 					// this catches e thrown by nebulas.js!neb
@@ -340,6 +362,7 @@
 					});
 					$(".modal.loading").modal("hide");
 				});
+
 		} catch (e) {
 			// this catches e thrown by nebulas.js!account
 			bootbox.dialog({
@@ -352,7 +375,120 @@
 			$(".modal.loading").modal("hide");
 		}
 	}
+	function return_toUnlock() {
+		$("#addform").fadeOut();
+		$("#newWalletform").fadeOut();
+		$("#unlockform").fadeIn();
+	}
+	function createNewWallet() {
+		$("#addform").fadeOut();
+		$("#unlockform").fadeOut();
+		$("#newWalletform").fadeIn();
+	}
+	function createnewWalletBack(){
+		$("#addform").fadeOut();
+		$("#newWalletform").fadeOut();
+		$("#unlockform").fadeIn();
+	}
+	function backtoList(){
+		$("#myheader").fadeOut();
+		$("#mainContent").fadeIn();
+		$("#div_add").fadeOut();
+	}
+	function add_do() {
+		$(".modal.loading").modal("show");
+		innerCall(function (params) {
+			var gTx = new nebulas.Transaction(parseInt(localSave.getItem("chainId")),
+				globalParams.account,
+				params.to, params.value, params.nonce, params.gasPrice, params.gasLimit, params.contract);
 
+			gTx.signTransaction();
+
+			neb.api
+				.sendRawTransaction(gTx.toProtoString())
+				.then(function (resp) {
+					console.log(JSON.stringify(resp));
+					myAlert("新增地址", "恭喜提交成功！")
+					$("#platform_add").val("");
+					$("#coinname_add").val("");
+					$("#address_add").val("");
+					$(".modal.loading").modal("hide");
+				})
+				.catch(function (err) {
+					myAlert("系统提示", JSON.stringify(err));
+					$(".modal.loading").modal("hide");
+				});
+		});
+	}
+	function cancel() {
+		$("#myheader").fadeOut();
+		$("#div_add").fadeOut();
+		$("#mainContent").fadeIn();
+	}
+
+	function innerCall(callback) {
+		let params = {};
+		if (!globalParams.account) {
+			// TODO 提示钱包信息不正确
+			return;
+		}
+		params.from = globalParams.account.getAddressString();
+		// prepare to
+		let toAddr = dappAddress;
+		params.to = toAddr;
+		// prepare gasLimit
+		let gasLimit = Utils.toBigNumber(gas_limit);
+		params.gasLimit = gasLimit.toNumber();
+		// prepare gasPrice
+		let gasPrice = Utils.toBigNumber(gas_price);
+		params.gasPrice = gasPrice.toNumber();
+		// prepare value
+		let value = Utils.toBigNumber("0");
+		params.value = value;
+		// prepare contract
+		params.contract = {
+			"function": "save",
+			"args": "[\"" + $("#h_nickname").text() + "\",\"" + $("#platform_add").val() + "\",\"" + $("#coinname_add").val() + "\",\"" + $("#address_add").val() + "\"]"
+		};
+		// prepare nonce
+		// needs refresh data on every 'test' and 'commit' call, because data update may slow,
+		// you can get different result by hit 'test' multiple times
+		neb.api.getAccountState(params.from).then(function (resp) {
+			var balance = nebulas.Unit.fromBasic(resp.balance, "nas"),
+				$tab = $(".show.tab");
+			params.nonce = parseInt(resp.nonce) + 1;
+			$("#run_balance").val(balance + " NAS");
+
+			callback(params);
+		}).catch(function (err) {
+			myAlert("系统提示", err.message);
+		});
+	}
+	$("#creat").on("click", onClickCreate);
+        $(".download button").on("click", onClickDownloadButton);
+
+        function onClickCreate() {
+            validateAll() && $(".download").removeClass("active1");
+        }
+
+        function onClickDownloadButton() {
+            var password = $("#password").val(), address, keyStr, blob;
+
+            if (validateAll()) {
+                bootbox.alert({
+                    message: "waiting...",
+                    title: "info"
+                });
+
+                // window.open('tokey.html?password=' + password, '_blank');
+			    var account= nebulas.Account.NewAccount();
+                address = account.getAddressString();
+                keyStr = account.toKeyString(password);
+                blob = new Blob([keyStr], { type: "application/json; charset=utf-8" });
+                saveAs(blob, address);
+                bootbox.hideAll();
+            }
+        }
 </script>
 
 </html>
