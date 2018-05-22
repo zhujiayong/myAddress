@@ -245,7 +245,7 @@
 		$("#mainContent").fadeOut();
 		$("#div_add").fadeOut();
 	}
-	var dappAddress = "n1grRkmdvt4WSeWjEsWRz5zngBeb4srWTiM";
+	var dappAddress = "n1nr2xNyFrWf1uvSL59S6bgabAzNcWSB1Ri";
 	var value = "0";
 	var nonce = "0"
 	var gas_price = "1000000"
@@ -258,7 +258,7 @@
 		globalParams = {
 			account: null
 		};
-	neb.setRequest(new nebulas.HttpRequest("https://testnet.nebulas.io"));
+	neb.setRequest(new nebulas.HttpRequest("https://mainnet.nebulas.io"));
 	uiBlock.insert({
 		footer: ".footer",
 		header: ".header",
@@ -267,7 +267,7 @@
 		numberComma: ".number-comma",
 		selectWalletFile: [".select-wallet-file", onUnlockFile]
 	});
-	var from = "n1ExsLQe3ExsHSRgEwfKPP3LeLjoq63KqRv";//Account.NewAccount().getAddressString();
+	var from = Account.NewAccount().getAddressString();
 	// 搜索功能: 查找Super-Dictionary 中有没有该词条
 	function search() {
 		// $("#search_value").val() 搜索框内的值
@@ -399,7 +399,7 @@
 		$(".modal.loading").modal("show");
 		innerCall(function (params) {
 			//var gTx = new nebulas.Transaction(parseInt(localSave.getItem("chainId")),
-			var gTx = new nebulas.Transaction(1001,
+			var gTx = new nebulas.Transaction(1,
 				globalParams.account,
 				params.to, params.value, params.nonce, params.gasPrice, params.gasLimit, params.contract);
 
